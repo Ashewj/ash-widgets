@@ -1,0 +1,5 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root" android:background="@drawable/stack_shape" android:clipToOutline="true" android:layout_width="match_parent" android:layout_height="match_parent">
+ <ViewFlipper android:id="@+id/frames" android:layout_width="match_parent" android:layout_height="match_parent" android:autoStart="true" android:flipInterval="180"/>
+ <ImageView android:id="@+id/widget_foreground" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitCenter" android:visibility="gone" android:importantForAccessibility="no"/>
+ <StackView android:id="@+id/widget_stack" android:layout_width="match_parent" android:layout_height="match_parent" android:animateFirstView="false"/>
+</FrameLayout>

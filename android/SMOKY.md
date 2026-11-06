@@ -1,0 +1,11 @@
+# Smoky renderer
+
+Source: LRan (lran1028), [Smoky Button](https://21st.dev/@lran1028/components/smoky-button), published with MIT license metadata. The fragment shader in `app/src/main/res/raw/smoky_fragment.glsl` is copied verbatim from the component bundle. The previously used Infinity_Rh project was read only and was not modified.
+
+The Android adapter promotes fragment floats to highp, retains the original noise/domain warping/ribbons/palette, applies the hovered CSS scale 1.14, rotation .5 degrees, saturation 1.08 and contrast 1.04, and adds less than one 8-bit level of stationary dither. Primary color is user selectable; secondary and shadow retain the original palette. Opaque Smoky composites over #111. Transparent Smoky preserves premultiplied alpha over the translucent charcoal glass treatment. That treatment simulates frosted glass; Android RemoteViews does not expose backdrop blur of the launcher wallpaper.
+
+Inside the app, TextureView/EGL renders on Choreographer vsync with an elapsed-time clock and requests the highest supported display mode at the current resolution. Rendering pauses when the activity is hidden. EGL surface dimensions are queried before each live draw so viewport and shader resolution match the actual buffer after resize. No small fixed viewport remains.
+
+The launcher uses a different path because RemoteViews cannot host this live TextureView. A 240-frame, 160x71 background sequence is sampled at 16 ms intervals; a separate 720x320 foreground keeps text/ring sharp. A 40-frame smoothstep crossfade makes the loop continuous. Blending uses premultiplied alpha, with proper conversion when creating Android bitmaps. Total transmitted bitmap pixels remain below 12 MB per widget update. Actual animation delivery depends on launcher scheduling and device performance; it is not guaranteed to match a 120 Hz display. System animation settings are respected.
+
+The app requires highp fragment precision with at least 16 mantissa bits and RGBA8888. Tested hardware reports highp=23 and RGBA=8/8/8/8. A separate emulator host-rendering defect quantizes the entire displayed screen, including wallpaper; direct Android screenshots are smooth. Software rendering removes that host display defect but is substantially slower. This should not be confused with shader precision on a physical phone.

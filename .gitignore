@@ -1,0 +1,17 @@
+﻿*.har
+tim-inspection*
+.env
+.env.*
+.tim-*
+__pycache__/
+tools/
+android/build/
+
+# Local account data, captures and generated tooling
+tim-usage.json
+*.png
+*.apk
+*.keystore
+*.jks
+.code-review-graph/
+*.log

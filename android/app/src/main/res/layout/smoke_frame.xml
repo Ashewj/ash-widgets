@@ -1,0 +1,1 @@
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/card_image" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="center" android:adjustViewBounds="true" android:scaleType="fitCenter" android:background="@drawable/widget_shape" android:clipToOutline="true" android:contentDescription="Internet TIM"/>
